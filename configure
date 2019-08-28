@@ -1719,7 +1719,7 @@ EXTERNAL_LIBRARY_GPL_LIST="
     libxavs
     libxavs2
     libxvid
-    python
+    python3
 "
 
 EXTERNAL_LIBRARY_NONFREE_LIST="
@@ -3474,7 +3474,7 @@ framerate_filter_select="scene_sad"
 freezedetect_filter_select="scene_sad"
 frei0r_filter_deps="frei0r libdl"
 frei0r_src_filter_deps="frei0r libdl"
-python_filter_deps="python"
+python_filter_deps="python3"
 fspp_filter_deps="gpl"
 geq_filter_deps="gpl"
 histeq_filter_deps="gpl"
@@ -6379,10 +6379,7 @@ enabled rkmpp             && { require_pkg_config rkmpp rockchip_mpp  rockchip/r
                              }
 enabled vapoursynth       && require_pkg_config vapoursynth "vapoursynth-script >= 42" VSScript.h vsscript_init
 
-enabled python            && require_pkg_config python3 python3 Python.h Py_Initialize
-#enabled python             && {
-#                                add_cflags `python3-config --cflags` &&
-#                                add_ldflags `python3-config --ldflags`; }
+enabled python3            && require_pkg_config python3 python3 Python.h Py_Initialize
 
 
 
