@@ -333,6 +333,7 @@ OBJS-$(CONFIG_PROCAMP_VAAPI_FILTER)          += vf_procamp_vaapi.o vaapi_vpp.o
 OBJS-$(CONFIG_PROGRAM_OPENCL_FILTER)         += vf_program_opencl.o opencl.o framesync.o
 OBJS-$(CONFIG_PSEUDOCOLOR_FILTER)            += vf_pseudocolor.o
 OBJS-$(CONFIG_PSNR_FILTER)                   += vf_psnr.o framesync.o
+OBJS-$(CONFIG_PYTHON_FILTER)                 += vf_python.o
 OBJS-$(CONFIG_PULLUP_FILTER)                 += vf_pullup.o
 OBJS-$(CONFIG_QP_FILTER)                     += vf_qp.o
 OBJS-$(CONFIG_RANDOM_FILTER)                 += vf_random.o
@@ -457,6 +458,8 @@ OBJS-$(CONFIG_SMPTEHDBARS_FILTER)            += vsrc_testsrc.o
 OBJS-$(CONFIG_TESTSRC_FILTER)                += vsrc_testsrc.o
 OBJS-$(CONFIG_TESTSRC2_FILTER)               += vsrc_testsrc.o
 OBJS-$(CONFIG_YUVTESTSRC_FILTER)             += vsrc_testsrc.o
+OBJS-$(CONFIG_PYTHON_SRC_FILTER)             += vf_python.o
+
 
 OBJS-$(CONFIG_NULLSINK_FILTER)               += vsink_nullsink.o
 

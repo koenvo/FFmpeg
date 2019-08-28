@@ -316,6 +316,7 @@ extern AVFilter ff_vf_procamp_vaapi;
 extern AVFilter ff_vf_program_opencl;
 extern AVFilter ff_vf_pseudocolor;
 extern AVFilter ff_vf_psnr;
+extern AVFilter ff_vf_python;
 extern AVFilter ff_vf_pullup;
 extern AVFilter ff_vf_qp;
 extern AVFilter ff_vf_random;

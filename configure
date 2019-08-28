@@ -1719,6 +1719,7 @@ EXTERNAL_LIBRARY_GPL_LIST="
     libxavs
     libxavs2
     libxvid
+    python
 "
 
 EXTERNAL_LIBRARY_NONFREE_LIST="
@@ -3473,6 +3474,7 @@ framerate_filter_select="scene_sad"
 freezedetect_filter_select="scene_sad"
 frei0r_filter_deps="frei0r libdl"
 frei0r_src_filter_deps="frei0r libdl"
+python_filter_deps="python"
 fspp_filter_deps="gpl"
 geq_filter_deps="gpl"
 histeq_filter_deps="gpl"
@@ -6227,6 +6229,7 @@ enabled libilbc           && require libilbc ilbc.h WebRtcIlbcfix_InitDecode -li
 enabled libklvanc         && require libklvanc libklvanc/vanc.h klvanc_context_create -lklvanc
 enabled libkvazaar        && require_pkg_config libkvazaar "kvazaar >= 0.8.1" kvazaar.h kvz_api_get
 enabled liblensfun        && require_pkg_config liblensfun lensfun lensfun.h lf_db_new
+
 # While it may appear that require is being used as a pkg-config
 # fallback for libmfx, it is actually being used to detect a different
 # installation route altogether.  If libmfx is installed via the Intel
@@ -6375,6 +6378,12 @@ enabled rkmpp             && { require_pkg_config rkmpp rockchip_mpp  rockchip/r
                                  die "ERROR: rkmpp requires --enable-libdrm"; }
                              }
 enabled vapoursynth       && require_pkg_config vapoursynth "vapoursynth-script >= 42" VSScript.h vsscript_init
+
+#enabled python            && require_pkg_config python3 python3 Python.h Py_Initialize
+enabled python             && {
+                                add_cflags `python3-config --cflags` &&
+                                add_ldflags `python3-config --ldflags`; }
+
 
 
 if enabled gcrypt; then
