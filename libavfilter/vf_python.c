@@ -141,7 +141,7 @@ static int check_and_call_init(PythonContext *py_context)
         if (pFunc && PyCallable_Check(pFunc)) {
             pArgs = PyTuple_New(1);
 
-            pValue = PyUnicode_DecodeFSDefault(py_context->init_args);
+            pValue = PyString_FromString(py_context->init_args);
             PyTuple_SetItem(pArgs, 0, pValue);
 
             pValue = PyObject_CallObject(pFunc, pArgs);
