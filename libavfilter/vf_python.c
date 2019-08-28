@@ -186,7 +186,7 @@ static av_cold int init(AVFilterContext *ctx)
     PythonContext *py_context = ctx->priv;
 
     Py_Initialize();
-    pName = PyUnicode_DecodeFSDefault(py_context->module);
+    pName = PyString_FromString(py_context->module);
     /* Error checking of pName left out */
 
     py_context->pModule = PyImport_Import(pName);
@@ -224,7 +224,7 @@ static av_cold void uninit(AVFilterContext *ctx)
     Py_DECREF(py_context->pFunc);
     Py_DECREF(py_context->pModule);
 
-    Py_FinalizeEx();
+    Py_Finalize();
 }
 
 static const AVFilterPad python_inputs[] = {
