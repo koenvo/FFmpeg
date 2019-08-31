@@ -185,7 +185,11 @@ static av_cold int init(AVFilterContext *ctx)
     PyObject *pName;
     PythonContext *py_context = ctx->priv;
 
-    Py_Initialize();
+    if (!Py_IsInitialized()) {
+        Py_Initialize();
+    }
+
+
     pName = PyUnicode_DecodeFSDefault(py_context->module);
     /* Error checking of pName left out */
 
