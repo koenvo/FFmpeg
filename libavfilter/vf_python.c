@@ -211,6 +211,8 @@ static av_cold int init(AVFilterContext *ctx)
         }
     } else {
         av_log(ctx, AV_LOG_ERROR, "could not load module\n");
+        if (PyErr_Occurred())
+            PyErr_Print();
         return AVERROR(EINVAL);
     }
 
