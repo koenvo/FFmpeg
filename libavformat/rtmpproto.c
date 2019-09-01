@@ -24,6 +24,9 @@
  * RTMP protocol
  */
 
+#include <stdlib.h>
+#include <sys/time.h>
+
 #include "libavcodec/bytestream.h"
 #include "libavutil/avstring.h"
 #include "libavutil/base64.h"
@@ -2580,6 +2583,18 @@ static int inject_fake_duration_metadata(RTMPContext *rt)
     return 0;
 }
 
+static void set_connection_start()
+{
+    char connection_start[50];
+    struct timeval tp;
+    gettimeofday(&tp, NULL);
+    long long ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+
+    snprintf(connection_start, sizeof(connection_start), "%lld", ms);
+
+    setenv("CONNECTION_START", connection_start, 0);
+}
+
 /**
  * Open RTMP connection and verify that the stream can be played.
  *
@@ -2672,6 +2687,9 @@ reconnect:
         if ((ret = rtmp_calc_swfhash(s)) < 0)
             goto fail;
     }
+
+    set_connection_start();
+
 
     rt->state = STATE_START;
     if (!rt->listen && (ret = rtmp_handshake(s, rt)) < 0)

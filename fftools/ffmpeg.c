@@ -32,8 +32,8 @@
 #include <limits.h>
 #include <stdatomic.h>
 #include <stdint.h>
-#define PY_SSIZE_T_CLEAN
-#include <Python.h>
+//#define PY_SSIZE_T_CLEAN
+//#include <Python.h>
 #if HAVE_IO_H
 #include <io.h>
 #endif
@@ -4840,26 +4840,26 @@ static int64_t getmaxrss(void)
 static void log_callback_null(void *ptr, int level, const char *fmt, va_list vl)
 {
 }
-
-static void check_python_init()
-{
-    char *python_startup;
-    PyObject *pModule, *pName;
-    Py_Initialize();
-
-    python_startup = getenv("PYTHONSTARTUP");
-    if (python_startup != NULL) {
-        pName = PyUnicode_DecodeFSDefault(python_startup);
-        pModule = PyImport_Import(pName);
-        Py_DECREF(pName);
-
-        if (pModule == NULL) {
-            av_log(NULL, AV_LOG_FATAL, "could not load python startup\n");
-            exit_program(1);
-        }
-        Py_DECREF(pModule);
-    }
-}
+//
+//static void check_python_init()
+//{
+//    char *python_startup;
+//    PyObject *pModule, *pName;
+//    Py_Initialize();
+//
+//    python_startup = getenv("PYTHONSTARTUP");
+//    if (python_startup != NULL) {
+//        pName = PyUnicode_DecodeFSDefault(python_startup);
+//        pModule = PyImport_Import(pName);
+//        Py_DECREF(pName);
+//
+//        if (pModule == NULL) {
+//            av_log(NULL, AV_LOG_FATAL, "could not load python startup\n");
+//            exit_program(1);
+//        }
+//        Py_DECREF(pModule);
+//    }
+//}
 
 int main(int argc, char **argv)
 {
@@ -4868,7 +4868,7 @@ int main(int argc, char **argv)
 
     init_dynload();
 
-    check_python_init();
+//    check_python_init();
 
     register_exit(ffmpeg_cleanup);
 
